@@ -1,28 +1,51 @@
 function deepClone(returnObj) {
-    var result = {};
-    for (var key in returnObj) {
-        if (typeof returnObj[key] == "number"
-            || typeof returnObj[key] == "string"
-            || typeof returnObj[key] == "boolean"
-            || typeof returnObj[key] == "undefined"
-            || returnObj[key] === null) {
+    var result;
 
-            result[key] = returnObj[key];}
-        else if (Array.isArray(returnObj[key])) {
-            result[key] = [];
-            for (var i = 0; i < returnObj[key].length; i++){
-                result[key][i] = deepClone(returnObj[key][i]);
-            }
-        }
-        else if(typeof returnObj[key] == "object") {
-            result[key] += {};
-            result[key] = deepClone(returnObj[key]);
-        }
-        else if(typeof returnObj[key] == "function") {
-            result[key] += function () {};
-            result[key] = returnObj[key];
+    if (typeof returnObj == "number"
+        || typeof returnObj == "string"
+        || typeof returnObj == "boolean"
+        || typeof returnObj == "undefined"
+        || returnObj === null) {
+        result = returnObj;
+    }
+    else if (Array.isArray(returnObj)) {
+        result = [];
+        for (var i = 0; i < returnObj.length; i++){
+            result[i] = deepClone(returnObj[i]);
         }
     }
+    else if(typeof returnObj == "object") {
+
+        result = {};
+
+        for (var key in returnObj) {
+            if (typeof returnObj[key] == "number"
+                || typeof returnObj[key] == "string"
+                || typeof returnObj[key] == "boolean"
+                || typeof returnObj[key] == "undefined"
+                || returnObj[key] === null) {
+                result[key] = returnObj[key];}
+            else if (Array.isArray(returnObj[key])) {
+                result[key] = [];
+                for (var i = 0; i < returnObj[key].length; i++){
+                    result[key][i] = deepClone(returnObj[key][i]);
+                }
+            }
+            else if(typeof returnObj[key] == "object") {
+                result[key] = {};
+                result[key] = deepClone(returnObj[key]);
+            }
+            else if(typeof returnObj[key] == "function") {
+                result[key] = function () {};
+                result[key] = returnObj[key];
+            }
+        }
+    }
+    else if(typeof returnObj == "function") {
+        result = function () {};
+        result = returnObj;
+    }
+
     return result
 }
 

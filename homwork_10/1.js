@@ -1,5 +1,5 @@
-function Animal(nameAnial) {
-    this.name = nameAnial;
+function Animal(name) {
+    this.name = name;
     this._foodAmount = 50;
 }
 
@@ -19,8 +19,7 @@ Animal.prototype.dailyNorm = function (amount) {
     this._foodAmount = amount;
 }
 
-function Cat(name) {
-    this.name = name;
+function Cat() {
 }
 Cat.prototype = Object.create(Animal.prototype);
 Cat.prototype.constructor = Cat;
@@ -36,7 +35,8 @@ Cat.prototype.stroke = function () {
     return this
 }
 
-var barsik = new Cat('Барсик');
+var barsik = new Cat();
+barsik.name = 'Барсик';
 
 console.log(barsik.name);
 console.log(barsik.dailyNorm(100));
