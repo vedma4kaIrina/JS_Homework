@@ -10,7 +10,8 @@ secondPar.innerHTML = 'Hello, here are <a href="http://google.by">Link 3</a> and
 container.appendChild(firstPar);
 container.appendChild(secondPar);
 
-secondPar.addEventListener('click', clickSecondPar);
+secondPar.firstElementChild.addEventListener('click', clickSecondPar);
+secondPar.lastElementChild.addEventListener('click', clickSecondPar);
 
 buttonChange.onclick = function () {
     var allChildren = container.children;
@@ -24,7 +25,7 @@ buttonChange.onclick = function () {
     //}
 }
 
-function clickSecondPar() {
+function clickSecondPar(event) {
     event.preventDefault();
     alert(event.target);
 }

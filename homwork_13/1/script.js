@@ -25,20 +25,19 @@ function clickTable(event) {
     var target = event.target,
         newInput = document.createElement('input');
 
-    if (target.tagName == 'TH') {
+    if (target.tagName === 'TH' && target !== cellAdd) {
         newInput.value = target.innerText;
         target.innerText = '';
         target.appendChild(newInput).focus();
     }
 }
 
-function focusoutTable(event) {
+function focusoutTable() {
 
     var inputSave = document.getElementsByTagName('input');
 
     if (inputSave.length > 0) {
         inputSave[0].parentElement.textContent += inputSave[0].value;
-        inputSave[0].remove();
     }
 }
 
@@ -48,6 +47,5 @@ function keydownTable(event) {
 
     if (inputSave.length > 0 && event.keyCode === 13) {
         inputSave[0].parentElement.textContent += inputSave[0].value;
-        inputSave[0].remove();
     }
 }
