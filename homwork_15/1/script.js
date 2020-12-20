@@ -34,14 +34,16 @@ function clickCreateButton() {
                 tdElement = trElement.appendChild(newTD.cloneNode(true));
 
                 if ((i % 2 === 0 && j % 2 === 0) || i % 2 === 1 && j % 2 === 1) {
-                    tdElement.style.backgroundColor = 'black';
+                    tdElement.classList.add('white');
                 } else {
-                    tdElement.style.backgroundColor = 'white';
+                    tdElement.classList.add('black');
+
                 }
             }
         }
         xInput.value = '';
         yInput.value = '';
+        createButton.disabled = true;
     }
 }
 

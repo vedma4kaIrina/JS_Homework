@@ -32,15 +32,15 @@ function clickSecondPar(event) {
     var valueKey,
         key;
     if (localStorage.getItem(this.href) == null && this.href[this.href.length-1] !== '#') {
-        localStorage.setItem(this.href, JSON.stringify({path: this.text}));
+        localStorage.setItem(this.text, JSON.stringify({path: this.href}));
         this.href = '#';
         alert('ссылка была сохранена');
     } else {
         for (var i = 0; i < localStorage.length; i++) {
             key = localStorage.key(i);
             valueKey = JSON.parse(localStorage[key]);
-            if (this.text === valueKey.path) {
-                alert(key);
+            if (this.text === key) {
+                alert(valueKey['path']);
             }
 
         }

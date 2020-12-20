@@ -6,3 +6,9 @@ table tr td{
     width: 30px;
     height: 30px;
 }
+.black {
+    background: black;
+}
+.white {
+    background: white;
+}
