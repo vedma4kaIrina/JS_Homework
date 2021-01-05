@@ -19,9 +19,8 @@ function clickDownloadButton() {
             divLastName,
             divFoto;
 
-        if (statusType === 2) {
+        if (statusType === 2 && document.getElementsByClassName('displayBlock').length === 0) {
             answer = JSON.parse(this.response).data;
-
             for (var i = 0; i < answer.length; i++) {
                 newBookmark = document.createElement('button');
                 newBookmark.classList.add('tabLinks');
@@ -30,7 +29,7 @@ function clickDownloadButton() {
                 newBookmark.addEventListener('click', openNewBookmark);
 
                 divMain = document.createElement('div');
-                divMain.classList.add('tabContent');
+                divMain.classList.add('displayNone');
                 divMain.id = 'User' + counter;
                 document.body.appendChild(divMain);
 
@@ -66,18 +65,23 @@ function openNewBookmark(event) {
     var tabContent,
         tabLinks,
         num,
-        i;
+        i,
+        user;
 
-    tabContent = document.getElementsByClassName("tabContent");
+    tabContent = document.getElementsByClassName('displayBlock');
     for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
+        tabContent[i].classList.add('displayNone');
+        tabContent[i].classList.remove('displayBlock');
     }
 
-    tabLinks = document.getElementsByClassName("tabLinks");
+    tabLinks = document.getElementsByClassName('tabLinks');
     for (i = 0; i < tabLinks.length; i++) {
-        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+        tabLinks[i].className = tabLinks[i].className.replace(' active', '');
     }
     num = this.textContent[this.textContent.length-1];
-    document.getElementById('User' + num).style.display = "block";
-    event.currentTarget.className += " active";
+
+    user = document.getElementById('User' + num);
+    user.classList.remove('displayNone');
+    user.classList.add('displayBlock');
+    event.currentTarget.className += ' active';
 }
